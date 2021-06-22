@@ -1,108 +1,49 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <title>Pagina Principal</title>
-    <meta charset="utf-8"/>
-    
-    <fieldset style="position: relative; left: 120px; width: 50%; height: 50%;;">
-        <br/>
-       <h2> Bem vindo ao Matt System!</h2>
-       <br/>
-       <br/>
-       <br/>
-       <br/>
-       <h4 style="position: relative; left: 2%;">Calcule 10% do seu Sálario:</h4>
-     
-    <fieldset style="position: relative; left: 20px; width: 90%; height: 90%;;">
-   
-    </head>
+    <meta charset="utf-8" />
+    <script src="projeto_calcula_salario.js"></script>
+</head>
 
 <body>
-        
-        <label>Sálario Base:</label>
-        <br/>
-        <form>
-            <input id="valor" type="text" required="required" onKeyPress="return(MascaraMoeda(this,'.',',',event))">
-            </form>
-        <br>
-        </br>
-        <br>
-        </br>
-        <button style="background-color:green; position: relative; 
-        left: 73%;
-        width: 150px; height: 50px;
-        " id="calcular" onclick="calculaSalario()">Calcular</button>
-        
-        
+    <form>
+        <div class="container">
+            <div class="row justify-content-md-center">
+                <div class="col-md-auto">
+                    </br>
+                    <h2>Bem-vindo ao Calcula Salário!</h2>
+                    </br>
+                </div>
+            </div>
 
+            <div class="row">
+                <div class="col">
+                    <p>Informe um valor abaixo para descobrir quanto é o 10% do seu salário.</p>
+                </div>
+            </div>
 
-        </fieldset>
-    </fieldset>
-        
-    <script type="text/javascript">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label class="form-label">Salário base:</label>
+                        <input id="valor" type="text" class="form-control" required="required" onKeyPress="return(MascaraMoeda(this,'.',',',event))">
+                    </div>
+                </div>
+            </div>
 
-function MascaraMoeda(objTextBox, SeparadorMilesimo, SeparadorDecimal, e){
-    var sep = 0;
-    var key = '';
-    var i = j = 0;
-    var len = len2 = 0;
-    var strCheck = '0123456789';
-    var aux = aux2 = '';
-    var whichCode = (window.Event) ? e.which : e.keyCode;
-    if (whichCode == 13) return true;
-    key = String.fromCharCode(whichCode); // Valor para o código da Chave
-    if (strCheck.indexOf(key) == -1) return false; // Chave inválida
-    len = objTextBox.value.length;
-    for(i = 0; i < len; i++)
-        if ((objTextBox.value.charAt(i) != '0') && (objTextBox.value.charAt(i) != SeparadorDecimal)) break;
-    aux = '';
-    for(; i < len; i++)
-        if (strCheck.indexOf(objTextBox.value.charAt(i))!=-1) aux += objTextBox.value.charAt(i);
-    aux += key;
-    len = aux.length;
-    if (len == 0) objTextBox.value = '';
-    if (len == 1) objTextBox.value = '0'+ SeparadorDecimal + '0' + aux;
-    if (len == 2) objTextBox.value = '0'+ SeparadorDecimal + aux;
-    if (len > 2) {
-        aux2 = '';
-        for (j = 0, i = len - 3; i >= 0; i--) {
-            if (j == 3) {
-                aux2 += SeparadorMilesimo;
-                j = 0;
-            }
-            aux2 += aux.charAt(i);
-            j++;
-        }
-        objTextBox.value = '';
-        len2 = aux2.length;
-        for (i = len2 - 1; i >= 0; i--)
-        objTextBox.value += aux2.charAt(i);
-        objTextBox.value += SeparadorDecimal + aux.substr(len - 2, len);
-    }
-    return false;
-}
-    
-        function calculaSalario(){
-        var salario = document.getElementById("valor").value;
-        var formataSalario = parseInt(salario.replace('.','').substring(0, salario.indexOf(',')));
-        var resultado = formataSalario / 100 * 10;
-
-
-
-        if(salario == "")
-    {
-        alert("Por Favor, Digite seu sálario!!!");
-    }
-    else {
-            alert(" 10% do seu salario é " + resultado + "reais");
-    }
-        
-}       
-      </script>
-
-      
-
-
+            <div class="row">
+                <div class="col">
+                    <button type="button" class="btn btn-success" id="calcular" data-dismiss="calculaSalario()" onclick="calculaSalario()">Calcular</button>
+                </div>
+            </div>
+        </div>
+    </form>
 </body>
 
 </html>
